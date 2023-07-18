@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 import Loader from './loader';
+import { TransactionContext } from '@/context/TransactionContext';
 
 const companyCommonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -19,10 +20,13 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 
 const Welcome = () => {
 
+  const { connectWallet } = useContext(TransactionContext)
   const [ isLoading , setIsLoading ] = useState(false)
   const handleChange = (e) => {
 
   }
+
+
 
   return (
     <div className="flex w-full justify-center items-center">
@@ -37,6 +41,7 @@ const Welcome = () => {
             <button
               type="button"
               className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+              onClick={connectWallet}
             >
               <AiFillPlayCircle className="text-white mr-2" />
               <p className="text-white text-base font-semibold">
